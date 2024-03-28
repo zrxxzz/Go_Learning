@@ -1,4 +1,26 @@
-## Go学习笔记---（一）
+### Go
+
+#### Golang 官网学习资料：
+
+https://go.dev/learn/
+https://go.dev/tour/welcome/1
+https://go.dev/doc/effective_go
+
+#### 个人 Golang 资源整理：
+https://github.com/unknwon/go-study-index
+https://juejin.cn/post/7065113702801866788
+
+### 性能优化
+
+极客时间专栏《Linux 性能优化实战》：https://time.geekbang.org/column/intro/100020901?tab=catalog
+
+Brendan 个人播客：https://www.brendangregg.com/index.html
+
+### k8s
+
+图书：《第一本 Docker 书》
+
+极客专栏《Kubernetes 入门实战课》：https://time.geekbang.org/column/intro/100114501?tab=catalog
 
 ### 基本特性
 
@@ -27,3 +49,27 @@
   看上去挺有趣的，因为可以提前为返回值进行操作/(赋值)
 
 - 有个很逆天的iota，专门使用在const初始化中，在其之后每多声明一个变量，就会自增一次，甚至不重置的话，会自动赋值
+
+- 你要么直接在声明的时候初始化，选择隐式声明；要么显示声明之后，后续进行初始化。
+
+  不管如何，初始化是必须的
+
+
+#### 循环
+
+- 没有while 循环，只有for 循环
+
+- 内置下标索引，可以在for的 初始化部分，自动识别迭代器
+
+  如`for sub:= range nums`  或者自动取出下标
+
+  如`for i, sub := range nums` 其中的 `i`就会自动获取下标的索引
+
+- 如果 需要遍历的变量本身就像 map 一样存键值对， 那么也可以像上面那样实现多变量提取
+
+#### 数组
+
+- 和之前一样，类型放后面，需要注意的是，`[size]`需要放在类型前面
+- 如果不确定长度，可以先用`...`代替，如`nums [...]int`
+
+#### 指针

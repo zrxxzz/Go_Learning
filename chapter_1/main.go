@@ -13,6 +13,14 @@ func main() {
 	// num1 = 20
 	// var num2 = 20
 	// var num3 int = 30
+	/* 数组 */
+	var nums [10]int
+	// var nums = [...]int{1,2,3} //另一种初始化方式
+	for sub := range nums {
+		sub = 0
+		fmt.Println(sub)
+	}
+	/* 函数 */
 	c, d := test(18, 20)
 	fmt.Printf("%d,%d\n", c, d)
 	a := []int{0, 0}

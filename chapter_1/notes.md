@@ -1,26 +1,4 @@
-### Go
-
-#### Golang 官网学习资料：
-
-https://go.dev/learn/
-https://go.dev/tour/welcome/1
-https://go.dev/doc/effective_go
-
-#### 个人 Golang 资源整理：
-https://github.com/unknwon/go-study-index
-https://juejin.cn/post/7065113702801866788
-
-### 性能优化
-
-极客时间专栏《Linux 性能优化实战》：https://time.geekbang.org/column/intro/100020901?tab=catalog
-
-Brendan 个人播客：https://www.brendangregg.com/index.html
-
-### k8s
-
-图书：《第一本 Docker 书》
-
-极客专栏《Kubernetes 入门实战课》：https://time.geekbang.org/column/intro/100114501?tab=catalog
+## Go
 
 ### 基本特性
 
@@ -59,9 +37,13 @@ Brendan 个人播客：https://www.brendangregg.com/index.html
 
 - 没有while 循环，只有for 循环
 
-- 内置下标索引，可以在for的 初始化部分，自动识别迭代器
+- 内置下标索引，可以在for的 初始化部分，使用`range`可以自动识别迭代器
 
-  如`for sub:= range nums`  或者自动取出下标
+  > 默认返回两个值 index , value ，如果只接收了一个，会默认返回index
+  >
+  > 如果只想接收一个，可以选择使用`_ `替代一个 如`_:value`
+
+  如`for sub:= range nums`  自动取出下标
 
   如`for i, sub := range nums` 其中的 `i`就会自动获取下标的索引
 
@@ -73,3 +55,44 @@ Brendan 个人播客：https://www.brendangregg.com/index.html
 - 如果不确定长度，可以先用`...`代替，如`nums [...]int`
 
 #### 指针
+
+- 指针和之前的数组一样，虽然类型放在后面，但是`*`放在类型前面
+- `nil`就是C中的`NULL`
+- 指针指向结构体，不需要和CPP一样，使用`->`，依旧使用`.`来实现访问内部变量
+
+#### 结构体
+
+- 声明时类型放在后面
+
+- 初始化的时候，可以直接使用列表初始化的形式`:=structure {value1, value2}`初始化所有内部变量
+
+  或者自定义，初始化一部分`:=structure{key1:value1,key2:value2}`
+
+#### 切片
+
+> 本身的定义就是 未指定大小的数组，类似于vector
+
+- 初始化可以使用`make`函数（使用make可以初始化长度、容量）
+
+- 可以根据下标生成一个新的切片副本（很像python）
+
+  如：`a := arr[0:2]`
+
+- ！！！居然可以格式化输出一整个容器，厉害的
+
+  如`fmt.Printf("%v",a)`会自动遍历并输出整个容器内容
+
+  甚至可以 `%#v`带类型输出，`%+v`带字段输出（结构体）
+
+  ![image-20240329160015219](https://typora-zrx.oss-cn-beijing.aliyuncs.com/img/2024/03/29/20240329-160020.png)
+
+  应用到的底层原理是反射机制，原理就像CPP动态绑定一样，在运行时能通过反射API检测对象的类型和值
+
+- 通过 append 来实现尾部添加、copy 实现切片拷贝
+
+  两者返回的都是新的切片，因此并不是像CPP那样调用对象的方法，而是直接调用函数，返回值是一个新的切片，函数不会修改原切片（除非用指针），通过赋值修改
+
+  ![image-20240329193408177](https://typora-zrx.oss-cn-beijing.aliyuncs.com/img/2024/03/29/20240329-193411.png)
+
+#### Map
+

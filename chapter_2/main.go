@@ -7,6 +7,11 @@ import (
 
 type Vertex struct {
 	X, Y float64
+	x    int
+}
+
+var Test interface {
+	Scale()
 }
 
 func (v *Vertex) Scale(f float64) { // 指针作为传参，可以实现值的改变
@@ -16,12 +21,16 @@ func (v *Vertex) Scale(f float64) { // 指针作为传参，可以实现值的�
 }
 
 func main() {
+
 	os := runtime.GOOS
 	fmt.Println(os)
 	test_int := int(10)
 	fmt.Println(test_int)
-	v := &Vertex{3, 4}
-	s := Vertex{6, 8}
+	v := &Vertex{3, 4, 1}
+	s := Vertex{6, 8, 2}
+	// var test_i Test
+	// test_i = new(Vertex)
+
 	v.Scale(5)
 	s.Scale(5)
 	fmt.Println(v, s)
